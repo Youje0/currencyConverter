@@ -1,0 +1,175 @@
+@mixin changeInputBox {
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  border: 1px solid black;
+}
+
+@mixin marginBottom($bottom) {
+  margin-bottom: $bottom;
+}
+
+@mixin widthPercent($percent) {
+  width: $percent;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-color: #37517e;
+  display: flex;
+
+  .calculatorWrapper {
+    width: 50rem;
+    height: 10rem;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: white;
+    margin: 10rem auto;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .converteArea {
+      width: 100%;
+      .converteCurrencyBox {
+        font-weight: bold;
+        font-size: 1.3rem;
+      }
+    }
+    .currencyArea {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      .currencyBox {
+        @include widthPercent(45%);
+        position: relative;
+        .amount {
+          @include marginBottom(7px);
+        }
+
+        .amountBox {
+          display: flex;
+
+          .amountInputBox {
+            @include changeInputBox;
+            border: none;
+
+            .amountInput {
+              width: 100%;
+              padding: 1.5rem;
+              border: 1px solid #b5b7ba;
+              text-align: left;
+            }
+
+            .amountReadOnly {
+              width: 100%;
+              padding: 1.5rem;
+              border: 1px solid #b5b7ba;
+              cursor: default;
+              pointer-events: none;
+              text-align: left;
+            }
+
+            input[type="number"]::-webkit-outer-spin-button,
+            input[type="number"]::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
+            }
+
+            input {
+              width: 100%;
+              padding: 1rem;
+              border: 1px solid #b5b7ba;
+            }
+          }
+          .dropBox {
+            width: 25%;
+            cursor: pointer;
+            padding: 1rem;
+            text-align: center;
+            background-color: #2e4369;
+            color: white;
+            font-weight: bold;
+            z-index: 1;
+          }
+        }
+
+        .dropBoxList {
+          height: 15rem;
+          position: absolute;
+          right: 0;
+          margin-top: 0.2rem;
+          background-color: white;
+          border: 1px solid #b5b7ba;
+          overflow: auto;
+          .searchBox {
+            display: flex;
+            padding: 1rem;
+
+            .magnifier {
+              width: 1.2rem;
+              height: 1.2rem;
+              background: url("../public/img/magnifier.png");
+              background-size: cover;
+              align-items: center;
+              margin-right: 1rem;
+            }
+            input {
+              height: 1rem;
+            }
+          }
+          li {
+            padding: 1rem;
+            cursor: pointer;
+          }
+        }
+      }
+
+      .buttonBox {
+        width: 10%;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        .changeCurrencyBtn {
+          width: 3rem;
+          height: 3rem;
+          background: url("../public/img/exchange.png");
+          background-size: cover;
+          margin-top: 1.5rem;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    .calculatorWrapper {
+      height: 20rem;
+
+      background-color: white;
+
+      .currencyArea {
+        display: flex;
+        flex-direction: column;
+
+        .currencyBox {
+          @include widthPercent(100%);
+          position: relative;
+
+          .dropBoxList {
+            position: absolute;
+            right: 0;
+            z-index: 3;
+          }
+        }
+      }
+    }
+  }
+}
